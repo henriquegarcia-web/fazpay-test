@@ -10,9 +10,10 @@ export interface ICard {
   cardBackground: string
   cardLogo: React.ReactNode
   cardIssuer: string
+  cardBalance: number
 }
 
-const creditCardData: ICard[] = [
+const cardsData: ICard[] = [
   {
     cardId: 'card_01',
     cardHolderName: 'John Doe',
@@ -22,7 +23,8 @@ const creditCardData: ICard[] = [
     cardType: 'Visa',
     cardBackground: 'blue',
     cardLogo: <FaCcVisa />,
-    cardIssuer: 'Banco do Brasil'
+    cardIssuer: 'Banco do Brasil',
+    cardBalance: 615
   },
   {
     cardId: 'card_02',
@@ -33,8 +35,9 @@ const creditCardData: ICard[] = [
     cardType: 'Mastercard',
     cardBackground: 'orangered',
     cardLogo: <FaCcMastercard />,
-    cardIssuer: 'Nubank'
+    cardIssuer: 'Nubank',
+    cardBalance: 476
   }
 ]
 
-export { creditCardData }
+export { cardsData }

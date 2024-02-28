@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import * as S from './styles'
 
 import { Card } from '@/components'
 
-import { ICard, creditCardData } from '@/data/cards'
+import { formatCurrency } from '@/utils/functions/formatCurrency'
+
+import { ICard, cardsData } from '@/data/cards'
 
 interface IClientDashboard {}
 
 const ClientDashboard: React.FC = ({}: IClientDashboard) => {
-  const [openedCardId, setOpenedCardId] = useState(creditCardData[0].cardId)
+  const [openedCardId, setOpenedCardId] = useState(cardsData[0].cardId)
 
   return (
     <S.ClientDashboard>
@@ -27,7 +29,7 @@ const ClientDashboard: React.FC = ({}: IClientDashboard) => {
             </div>
           </S.CardsListHeader>
           <S.CardsListWrapper>
-            {creditCardData.map((cardData: ICard) => (
+            {cardsData.map((cardData: ICard) => (
               <Card
                 cardIsOpen={openedCardId === cardData.cardId}
                 cardData={cardData}
@@ -36,10 +38,46 @@ const ClientDashboard: React.FC = ({}: IClientDashboard) => {
             ))}
           </S.CardsListWrapper>
         </S.ClientDashboardCardsList>
-        <S.ClientDashboardCardsInfos></S.ClientDashboardCardsInfos>
+        <S.ClientDashboardCardsInfos>
+          <CardInfoContainer
+            openedCardId={openedCardId}
+            cardsData={cardsData}
+          />
+        </S.ClientDashboardCardsInfos>
       </S.ClientDashboardMain>
     </S.ClientDashboard>
   )
 }
 
 export default ClientDashboard
+
+// =============================================== CARD INFO CONTAINER
+
+interface ICardInfoContainer {
+  openedCardId: string
+  cardsData: ICard[]
+}
+
+const CardInfoContainer: React.FC<ICardInfoContainer> = ({
+  openedCardId,
+  cardsData
+}) => {
+  const filteredCardById: ICard | null = useMemo(() => {
+    return cardsData.find((card) => card.cardId === openedCardId) || null
+  }, [cardsData, openedCardId])
+
+  return (
+    <S.CardInfoContainer>
+      <S.CardInfoContainerHeader>
+        <S.CardInfoBalance>
+          {formatCurrency(filteredCardById?.cardBalance || 0)}
+        </S.CardInfoBalance>
+        <S.CardInfoMenu>
+          <button>Adicionar Entrada</button>
+          <button>Adicionar Saída</button>
+        </S.CardInfoMenu>
+      </S.CardInfoContainerHeader>
+      <S.CardInfoContainerWrapper></S.CardInfoContainerWrapper>
+    </S.CardInfoContainer>
+  )
+}
