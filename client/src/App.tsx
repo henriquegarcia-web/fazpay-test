@@ -1,5 +1,13 @@
+import AppRoutes from './Routes'
+
+import { AdminAuthProvider } from './contexts/AdminAuthContext'
+
 function App() {
-  return <></>
+  return (
+    <AdminAuthProvider>
+      <AppRoutes />
+    </AdminAuthProvider>
+  )
 }
 
 export default App
