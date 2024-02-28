@@ -1,7 +1,10 @@
 import React, { useMemo, useState } from 'react'
-import * as S from './styles'
 
-import { Card } from '@/components'
+import * as S from './styles'
+import { IoExitOutline, IoEnterOutline } from 'react-icons/io5'
+import { HiMiniWallet } from 'react-icons/hi2'
+
+import { Button, Card } from '@/components'
 
 import { formatCurrency } from '@/utils/functions/formatCurrency'
 
@@ -16,7 +19,7 @@ const ClientDashboard: React.FC = ({}: IClientDashboard) => {
     <S.ClientDashboard>
       <S.ClientDashboardHeader>
         <S.DashboardHeaderLogo>
-          Cards<b>Holder</b>
+          Cards <HiMiniWallet /> <b>Holder</b>
         </S.DashboardHeaderLogo>
         <S.DashboardHeaderMenu></S.DashboardHeaderMenu>
       </S.ClientDashboardHeader>
@@ -25,7 +28,7 @@ const ClientDashboard: React.FC = ({}: IClientDashboard) => {
           <S.CardsListHeader>
             <h3>Seus Cartões</h3>
             <div>
-              <button>+ Novo Cartão</button>
+              <Button label="+ Novo Cartão" />
             </div>
           </S.CardsListHeader>
           <S.CardsListWrapper>
@@ -70,11 +73,20 @@ const CardInfoContainer: React.FC<ICardInfoContainer> = ({
     <S.CardInfoContainer>
       <S.CardInfoContainerHeader>
         <S.CardInfoBalance>
-          {formatCurrency(filteredCardById?.cardBalance || 0)}
+          <p>Saldo atual:</p>
+          <b>{formatCurrency(filteredCardById?.cardBalance || 0)}</b>
         </S.CardInfoBalance>
         <S.CardInfoMenu>
-          <button>Adicionar Entrada</button>
-          <button>Adicionar Saída</button>
+          <Button
+            type="inverted"
+            label="Adicionar Entrada"
+            icon={<IoEnterOutline />}
+          />
+          <Button
+            type="inverted"
+            label="Adicionar Saída"
+            icon={<IoExitOutline />}
+          />
         </S.CardInfoMenu>
       </S.CardInfoContainerHeader>
       <S.CardInfoContainerWrapper></S.CardInfoContainerWrapper>

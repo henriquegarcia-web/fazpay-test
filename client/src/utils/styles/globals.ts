@@ -7,7 +7,7 @@ export const responsiveDesktop = '1000px'
 export const responsiveTablet = '760px'
 export const responsiveMobile = '480px'
 
-export const clientHeaderHeight = '60px'
+export const clientHeaderHeight = '70px'
 
 const GlobalStyle = createGlobalStyle`
   :root {

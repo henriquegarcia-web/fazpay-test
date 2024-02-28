@@ -3,7 +3,7 @@ import { clientHeaderHeight } from '@/utils/styles/globals'
 
 const cardListWidth = '300px'
 const cardListHeaderHeight = '30px'
-const cardInfosHeaderHeight = '60px'
+const cardInfosHeaderHeight = '75px'
 
 export const ClientDashboard = styled.div`
   display: flex;
@@ -24,12 +24,28 @@ export const ClientDashboardHeader = styled.div`
 `
 
 export const DashboardHeaderLogo = styled.h1`
-  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4px;
+  width: calc(${cardListWidth} - 40px);
+  padding: 20px;
+  border-radius: 0 0 16px 16px;
+
+  font-size: 24px;
   font-weight: 400;
 
   b {
     font-weight: 800;
   }
+
+  color: rgba(255, 255, 255, 1);
+
+  svg {
+    font-size: 26px;
+  }
+
+  background-color: rgba(0, 0, 0, 0.8);
 `
 
 export const DashboardHeaderMenu = styled.div`
@@ -47,7 +63,7 @@ export const ClientDashboardCardsList = styled.div`
   row-gap: 15px;
   width: ${cardListWidth};
   height: 100%;
-  padding: 0 20px;
+  padding: 20px;
 `
 
 export const CardsListHeader = styled.div`
@@ -77,7 +93,7 @@ export const ClientDashboardCardsInfos = styled.div`
   display: flex;
   width: calc(100% - ${cardListWidth});
   height: 100%;
-  border-radius: 20px 0 0 0;
+  border-radius: 16px 0 0 0;
 
   background-color: white;
 `
@@ -100,20 +116,34 @@ export const CardInfoContainerHeader = styled.div`
   width: 100%;
   height: ${cardInfosHeaderHeight};
   padding: 0 20px;
-  border-radius: 18px;
+  border-radius: 14px;
 
   background-color: rgba(0, 0, 0, 0.9);
 `
 
 export const CardInfoBalance = styled.div`
-  font-size: 20px;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
 
-  color: white;
+  p {
+    font-size: 12px;
+    font-weight: 400;
+
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  b {
+    font-size: 20px;
+    font-weight: 500;
+
+    color: rgba(255, 255, 255, 1);
+  }
 `
 
 export const CardInfoMenu = styled.div`
   display: flex;
+  column-gap: 6px;
 `
 
 export const CardInfoContainerWrapper = styled.div`
