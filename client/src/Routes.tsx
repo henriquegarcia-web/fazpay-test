@@ -15,9 +15,10 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         {/* =============================================================== */}
+        <Route path="/*" element={<ClientDashboardPage />} />
 
-        <Route path="/" element={<Navigate to="/entrar" />} />
-        <Route path="/*" element={<Navigate to="/entrar" />} />
+        {/* <Route path="/" element={<Navigate to="/entrar" />} />
+        <Route path="/*" element={<Navigate to="/entrar" />} /> */}
 
         {/* =============================================================== */}
 

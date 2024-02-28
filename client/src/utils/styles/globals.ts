@@ -7,10 +7,7 @@ export const responsiveDesktop = '1000px'
 export const responsiveTablet = '760px'
 export const responsiveMobile = '480px'
 
-export const adminMenuWidth = '220px'
-export const adminHeaderHeight = '55px'
-export const adminViewHeader = '50px'
-export const landingHeaderHeight = '50px'
+export const clientHeaderHeight = '60px'
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -67,9 +64,6 @@ const GlobalStyle = createGlobalStyle`
       background: #011bcd;
     }
   }
-
-
-
 `
 
 export default GlobalStyle
