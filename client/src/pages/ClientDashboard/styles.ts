@@ -3,7 +3,7 @@ import { clientHeaderHeight } from '@/utils/styles/globals'
 
 const cardListWidth = '300px'
 const cardListHeaderHeight = '30px'
-const cardInfosHeaderHeight = '75px'
+const cardInfosHeaderHeight = '65px'
 
 export const ClientDashboard = styled.div`
   display: flex;
@@ -115,7 +115,7 @@ export const CardInfoContainerHeader = styled.div`
   align-items: center;
   width: 100%;
   height: ${cardInfosHeaderHeight};
-  padding: 0 20px;
+  padding: 0 15px;
   border-radius: 14px;
 
   background-color: rgba(0, 0, 0, 0.9);
@@ -124,10 +124,11 @@ export const CardInfoContainerHeader = styled.div`
 export const CardInfoBalance = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 3px;
+  row-gap: 2px;
+  padding-left: 4px;
 
   p {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 400;
 
     color: rgba(255, 255, 255, 0.7);
@@ -135,7 +136,7 @@ export const CardInfoBalance = styled.div`
 
   b {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
 
     color: rgba(255, 255, 255, 1);
   }
@@ -148,16 +149,138 @@ export const CardInfoMenu = styled.div`
 
 export const CardInfoContainerWrapper = styled.div`
   display: flex;
-
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
   height: calc(100% - ${cardInfosHeaderHeight} - 15px);
+  padding: 10px 15px 15px 15px;
+  border-radius: 14px;
 
-  border: 1px solid red;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  span {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+
+    &:nth-of-type(1) {
+      width: 25%;
+    }
+
+    &:nth-of-type(2) {
+      width: 25%;
+    }
+
+    &:nth-of-type(3) {
+      width: 25%;
+    }
+
+    &:nth-of-type(4) {
+      width: 25%;
+    }
+
+    svg {
+      font-size: 18px;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      column-gap: 6px;
+    }
+  }
 `
 
-// export const CardInfoContainer = styled.div`
-//   display: flex;
-// `
+export const CardHistoryListHeader = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 20px;
+  padding: 0 15px;
 
-// export const CardInfoContainer = styled.div`
-//   display: flex;
-// `
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  color: rgba(0, 0, 0, 0.6);
+`
+
+interface ICardHistoryList {
+  hasscroll: number
+}
+
+export const CardHistoryListWrapper = styled.div<ICardHistoryList>`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - 30px);
+  overflow: auto;
+  padding-right: ${({ hasscroll }) => (hasscroll ? '10px' : '0px')};
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    z-index: 1000;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
+  }
+`
+
+export const CardHistoryList = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  width: 100%;
+  height: fit-content;
+`
+
+interface ICardHistoryItem {
+  type: 'entry' | 'outflow'
+}
+
+const getColor = ({ type }: ICardHistoryItem) => {
+  switch (type) {
+    case 'entry':
+      return 'rgba(3, 252, 57, 1)'
+    case 'outflow':
+      return 'rgba(252, 69, 3, 0.8)'
+    default:
+      return ''
+  }
+}
+
+export const CardHistoryItem = styled.div<ICardHistoryItem>`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+
+    /* span {
+      &:nth-of-type(1) {
+        transition: 0.2s;
+
+        color: ${({ type }) => getColor({ type })};
+      }
+    } */
+  }
+`

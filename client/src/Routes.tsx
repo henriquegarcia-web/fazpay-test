@@ -6,10 +6,10 @@ import {
   ClientDashboardPage
 } from './pages'
 
-import { useAdminAuth } from './contexts/AdminAuthContext'
+import { useAuth } from './contexts/AuthContext'
 
 const AppRoutes = () => {
-  const { isAdminLogged } = useAdminAuth()
+  const { isClientLogged } = useAuth()
 
   return (
     <BrowserRouter>
@@ -25,7 +25,7 @@ const AppRoutes = () => {
         <Route
           path="/entrar"
           element={
-            <PublicRoute isAuthenticated={isAdminLogged}>
+            <PublicRoute isAuthenticated={isClientLogged}>
               <ClientSignInPage />
             </PublicRoute>
           }
@@ -34,7 +34,7 @@ const AppRoutes = () => {
         <Route
           path="/cadastrar"
           element={
-            <PublicRoute isAuthenticated={isAdminLogged}>
+            <PublicRoute isAuthenticated={isClientLogged}>
               <ClientSignUpPage />
             </PublicRoute>
           }
@@ -43,7 +43,7 @@ const AppRoutes = () => {
         <Route
           path="/app"
           element={
-            <PrivateRoute isAuthenticated={isAdminLogged}>
+            <PrivateRoute isAuthenticated={isClientLogged}>
               <ClientDashboardPage />
             </PrivateRoute>
           }
